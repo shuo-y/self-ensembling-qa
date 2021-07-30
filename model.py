@@ -328,8 +328,10 @@ class BaselineReader(nn.Module):
 
         return start_logits, end_logits  # [batch_size, p_len], [batch_size, p_len]
 
+# The class EMA is Based on https://www.zijianhu.com/post/pytorch/ema/
+# which cites https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage
+# for exponential moving average
 class EMA(nn.Module):
-    # Some are based on https://www.zijianhu.com/post/pytorch/ema/
     def __init__(self, student_model: nn.Module, decay=0.9999):
         super().__init__()
         self.student_model = student_model
